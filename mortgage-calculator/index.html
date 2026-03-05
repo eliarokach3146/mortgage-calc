@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="theme-color" content="#1a237e" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="מחשבון" />
+  <title>מחשבון יועץ משכנתאות</title>
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+
+  <!-- ─── Header ─── -->
+  <header class="app-header">
+    <img src="./Gemini_Generated_Image_ct8t8hct8t8hct8t.png" alt="אליה רוקח - ייעוץ משכנתאות וליווי אישי" class="header-logo" />
+    <h1>מחשבון יועץ משכנתאות</h1>
+  </header>
+
+  <!-- ─── Tab Navigation ─── -->
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="percent">💯 מחשבון אחוזים</button>
+    <button class="tab-btn" data-tab="loan">🏠 החזר הלוואה</button>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       TAB 1 — PERCENTAGE CALCULATOR
+  ═══════════════════════════════════════════ -->
+  <div class="tab-content active" id="tab-percent">
+
+    <div class="calc-card">
+      <h2><span class="icon">💯</span> מחשבון אחוזים</h2>
+
+      <!-- Mode Selector -->
+      <div class="mode-selector" style="flex-wrap:wrap; gap:4px;">
+        <button class="mode-btn pct-mode-btn active" data-mode="pct-of">X% מתוך Y</button>
+        <button class="mode-btn pct-mode-btn" data-mode="what-pct">כמה % הוא?</button>
+        <button class="mode-btn pct-mode-btn" data-mode="add-pct">הוסף %</button>
+        <button class="mode-btn pct-mode-btn" data-mode="sub-pct">הפחת %</button>
+        <button class="mode-btn pct-mode-btn" data-mode="pct-change">שינוי %</button>
+        <button class="mode-btn pct-mode-btn" data-mode="reverse-pct">בסיס לפני %</button>
+      </div>
+
+      <!-- Mode: X% מתוך Y -->
+      <div class="pct-inputs" data-mode="pct-of">
+        <p style="font-size:0.8rem;color:#6b7280;margin-bottom:10px;">מחשב כמה שווה אחוז מסוים מתוך סכום. לדוגמה: 5% מתוך ₪200,000</p>
+        <div class="field-row">
+          <div class="field">
+            <label>אחוז (%)</label>
+            <input type="number" id="pct-x-percent" placeholder="5" inputmode="decimal" />
+          </div>
+          <div class="field">
+            <label>מתוך הסכום (₪)</label>
+            <input type="number" id="pct-x-base" placeholder="200000" inputmode="decimal" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode: כמה אחוז -->
+      <div class="pct-inputs" data-mode="what-pct" style="display:none">
+        <p style="font-size:0.8rem;color:#6b7280;margin-bottom:10px;">מחשב איזה אחוז מספר X הוא מתוך מספר Y. לדוגמה: 10,000 מתוך 200,000 = 5%</p>
+        <div class="field-row">
+          <div class="field">
+            <label>הסכום החלקי (₪)</label>
+            <input type="number" id="pct-w-part" placeholder="10000" inputmode="decimal" />
+          </div>
+          <div class="field">
+            <label>הסכום הכולל (₪)</label>
+            <input type="number" id="pct-w-total" placeholder="200000" inputmode="decimal" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode: הוסף אחוז -->
+      <div class="pct-inputs" data-mode="add-pct" style="display:none">
+        <p style="font-size:0.8rem;color:#6b7280;margin-bottom:10px;">מוסיף אחוז לסכום. לדוגמה: ₪200,000 + 5% = ₪210,000</p>
+        <div class="field-row">
+          <div class="field">
+            <label>הסכום הבסיסי (₪)</label>
+            <input type="number" id="pct-a-base" placeholder="200000" inputmode="decimal" />
+          </div>
+          <div class="field">
+            <label>אחוז להוסיף (%)</label>
+            <input type="number" id="pct-a-percent" placeholder="5" inputmode="decimal" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode: הפחת אחוז -->
+      <div class="pct-inputs" data-mode="sub-pct" style="display:none">
+        <p style="font-size:0.8rem;color:#6b7280;margin-bottom:10px;">מפחית אחוז מסכום. לדוגמה: ₪200,000 − 5% = ₪190,000</p>
+        <div class="field-row">
+          <div class="field">
+            <label>הסכום הבסיסי (₪)</label>
+            <input type="number" id="pct-s-base" placeholder="200000" inputmode="decimal" />
+          </div>
+          <div class="field">
+            <label>אחוז להפחית (%)</label>
+            <input type="number" id="pct-s-percent" placeholder="5" inputmode="decimal" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode: שינוי אחוזי -->
+      <div class="pct-inputs" data-mode="pct-change" style="display:none">
+        <p style="font-size:0.8rem;color:#6b7280;margin-bottom:10px;">מחשב את השינוי האחוזי בין שני מספרים. לדוגמה: מ-₪200,000 ל-₪210,000 = +5%</p>
+        <div class="field-row">
+          <div class="field">
+            <label>ערך התחלתי (₪)</label>
+            <input type="number" id="pct-c-from" placeholder="200000" inputmode="decimal" />
+          </div>
+          <div class="field">
+            <label>ערך סופי (₪)</label>
+            <input type="number" id="pct-c-to" placeholder="210000" inputmode="decimal" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode: בסיס לפני אחוז -->
+      <div class="pct-inputs" data-mode="reverse-pct" style="display:none">
+        <p style="font-size:0.8rem;color:#6b7280;margin-bottom:10px;">מחשב מה היה הסכום המקורי לפני הוספת/הפחתת אחוז. לדוגמה: ₪210,000 אחרי +5% — מה היה לפני? → ₪200,000</p>
+        <div class="field-row">
+          <div class="field">
+            <label>הסכום לאחר השינוי (₪)</label>
+            <input type="number" id="pct-r-result" placeholder="210000" inputmode="decimal" />
+          </div>
+          <div class="field">
+            <label>האחוז שנוסף/הופחת (%)</label>
+            <input type="number" id="pct-r-percent" placeholder="5" inputmode="decimal" />
+          </div>
+        </div>
+        <p style="font-size:0.75rem;color:#9ca3af;margin-top:-4px;">לאחוז שהופחת — הזן מספר שלילי (לדוגמה: -5)</p>
+      </div>
+
+      <!-- Error -->
+      <div class="error-msg" id="pct-error"></div>
+
+      <!-- Button -->
+      <button class="calc-btn" id="btn-calc-pct">חשב</button>
+
+      <!-- Result -->
+      <div class="result-box" id="pct-result">
+        <div class="result-label">תוצאה</div>
+        <div class="result-value"></div>
+        <div class="result-sub"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       TAB 2 — LOAN CALCULATOR
+  ═══════════════════════════════════════════ -->
+  <div class="tab-content" id="tab-loan">
+
+    <div class="calc-card">
+      <h2><span class="icon">🏠</span> מחשבון החזר הלוואה</h2>
+
+      <!-- Loan Mode -->
+      <div class="mode-selector">
+        <button class="mode-btn loan-mode-btn active" data-mode="forward">חשב החזר חודשי</button>
+        <button class="mode-btn loan-mode-btn" data-mode="reverse">חשב ריבית</button>
+      </div>
+
+      <!-- Period Unit Toggle -->
+      <div style="margin-bottom:4px; font-size:0.8rem; color:#6b7280; font-weight:600;">תקופת ההלוואה:</div>
+      <div class="unit-toggle">
+        <button class="unit-btn active" data-unit="years">שנים</button>
+        <button class="unit-btn" data-unit="months">חודשים</button>
+      </div>
+
+      <!-- Mode: Forward (payment) -->
+      <div class="loan-inputs" data-mode="forward">
+        <p style="font-size:0.8rem;color:#6b7280;margin-bottom:10px;">הזן את פרטי ההלוואה וקבל את ההחזר החודשי לפי לוח שפיצר</p>
+        <div class="field">
+          <label>סכום הלוואה (₪)</label>
+          <input type="number" id="loan-amount" placeholder="800000" inputmode="decimal" />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label id="loan-period-label">תקופה (שנים)</label>
+            <input type="number" id="loan-period" placeholder="25" inputmode="decimal" />
+          </div>
+          <div class="field">
+            <label>ריבית שנתית (%)</label>
+            <input type="number" id="loan-rate" placeholder="4.5" inputmode="decimal" step="0.1" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode: Reverse (rate) -->
+      <div class="loan-inputs" data-mode="reverse" style="display:none">
+        <p style="font-size:0.8rem;color:#6b7280;margin-bottom:10px;">הזן החזר חודשי וסכום הלוואה וקבל את הריבית השנתית</p>
+        <div class="field">
+          <label>סכום הלוואה (₪)</label>
+          <input type="number" id="loan-r-amount" placeholder="800000" inputmode="decimal" />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label id="loan-r-period-label">תקופה (שנים)</label>
+            <input type="number" id="loan-r-period" placeholder="25" inputmode="decimal" />
+          </div>
+          <div class="field">
+            <label>החזר חודשי (₪)</label>
+            <input type="number" id="loan-r-payment" placeholder="4500" inputmode="decimal" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div class="error-msg" id="loan-error"></div>
+
+      <!-- Button -->
+      <button class="calc-btn" id="btn-calc-loan">חשב</button>
+
+      <!-- Result -->
+      <div class="result-box" id="loan-result">
+        <div class="result-label">תוצאה</div>
+        <div class="result-value"></div>
+        <div class="result-sub"></div>
+      </div>
+    </div>
+
+    <!-- Amortization Summary + Table -->
+    <div class="calc-card amort-section" id="amort-section">
+      <h2><span class="icon">📊</span> סיכום ולוח סילוקין</h2>
+
+      <div class="summary-grid">
+        <div class="summary-item">
+          <div class="s-label">סה"כ תשלומים</div>
+          <div class="s-value" id="sum-total">—</div>
+        </div>
+        <div class="summary-item">
+          <div class="s-label">סה"כ ריבית</div>
+          <div class="s-value" id="sum-interest">—</div>
+        </div>
+        <div class="summary-item">
+          <div class="s-label">מספר חודשים</div>
+          <div class="s-value" id="sum-months">—</div>
+        </div>
+        <div class="summary-item">
+          <div class="s-label">ריבית שנתית</div>
+          <div class="s-value" id="sum-rate">—</div>
+        </div>
+      </div>
+
+      <h3>לוח שפיצר — פירוט חודשי</h3>
+      <div class="table-wrapper">
+        <table id="amort-table">
+          <thead>
+            <tr>
+              <th>חודש</th>
+              <th>תשלום</th>
+              <th>קרן</th>
+              <th>ריבית</th>
+              <th>יתרה</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="./app.js"></script>
+
+  <!-- Update period label when unit changes -->
+  <script>
+    document.querySelectorAll('.unit-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const unit = btn.dataset.unit;
+        const label = unit === 'years' ? 'שנים' : 'חודשים';
+        const pl = unit === 'years' ? '25' : '300';
+        document.getElementById('loan-period-label').textContent = `תקופה (${label})`;
+        document.getElementById('loan-r-period-label').textContent = `תקופה (${label})`;
+        document.getElementById('loan-period').placeholder = pl;
+        document.getElementById('loan-r-period').placeholder = pl;
+      });
+    });
+  </script>
+
+</body>
+</html>

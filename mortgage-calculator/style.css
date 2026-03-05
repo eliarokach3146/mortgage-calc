@@ -1,0 +1,416 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary: #1a237e;
+  --primary-light: #3949ab;
+  --accent: #00897b;
+  --accent-light: #26a69a;
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --text: #1a1a2e;
+  --text-muted: #6b7280;
+  --border: #e5e7eb;
+  --success: #059669;
+  --danger: #dc2626;
+  --shadow: 0 2px 12px rgba(26,35,126,0.10);
+  --radius: 14px;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  direction: rtl;
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+/* ─── Header ─── */
+.app-header {
+  background: var(--primary);
+  color: white;
+  padding: 12px 20px 14px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-logo {
+  display: block;
+  margin: 0 auto 8px;
+  height: 72px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
+  border-radius: 6px;
+}
+
+.app-header h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.app-header p {
+  font-size: 0.78rem;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+/* ─── Tab Navigation ─── */
+.tab-nav {
+  display: flex;
+  background: var(--primary);
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 12px 8px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.65);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-bottom: 3px solid transparent;
+}
+
+.tab-btn.active {
+  color: white;
+  border-bottom-color: #ffd54f;
+  background: rgba(255,255,255,0.08);
+}
+
+.tab-btn:hover:not(.active) {
+  color: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.05);
+}
+
+/* ─── Tab Content ─── */
+.tab-content {
+  display: none;
+  padding: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* ─── Section Card ─── */
+.calc-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 16px;
+  margin-bottom: 16px;
+}
+
+.calc-card h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e8eaf6;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.calc-card h2 .icon {
+  font-size: 1.2rem;
+}
+
+/* ─── Mode Selector ─── */
+.mode-selector {
+  display: flex;
+  background: #f0f2f8;
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 16px;
+  gap: 4px;
+}
+
+.mode-btn {
+  flex: 1;
+  padding: 8px 6px;
+  border: none;
+  border-radius: 7px;
+  background: none;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.mode-btn.active {
+  background: white;
+  color: var(--primary);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+}
+
+/* ─── Form Elements ─── */
+.field {
+  margin-bottom: 12px;
+}
+
+.field label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+}
+
+.field input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  font-size: 1rem;
+  color: var(--text);
+  background: #fafbff;
+  transition: border-color 0.2s;
+  text-align: right;
+  direction: ltr;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  background: white;
+}
+
+.field input::placeholder {
+  color: #c4c9d4;
+  direction: rtl;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* ─── Unit Toggle ─── */
+.unit-toggle {
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid var(--border);
+  margin-bottom: 12px;
+}
+
+.unit-btn {
+  flex: 1;
+  padding: 9px;
+  border: none;
+  background: #fafbff;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.unit-btn.active {
+  background: var(--primary);
+  color: white;
+}
+
+/* ─── Calculate Button ─── */
+.calc-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  margin-top: 4px;
+}
+
+.calc-btn:hover {
+  background: var(--primary-light);
+}
+
+.calc-btn:active {
+  transform: scale(0.98);
+}
+
+.calc-btn.secondary {
+  background: var(--accent);
+  margin-top: 8px;
+}
+
+.calc-btn.secondary:hover {
+  background: var(--accent-light);
+}
+
+/* ─── Result Box ─── */
+.result-box {
+  margin-top: 14px;
+  padding: 16px;
+  background: linear-gradient(135deg, #e8f5e9 0%, #e3f2fd 100%);
+  border-radius: 10px;
+  border: 1.5px solid #b2dfdb;
+  display: none;
+}
+
+.result-box.visible {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+.result-box .result-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.result-box .result-value {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--primary);
+  direction: ltr;
+  text-align: center;
+}
+
+.result-box .result-sub {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* ─── Amortization Table ─── */
+.amort-section {
+  margin-top: 14px;
+  display: none;
+}
+
+.amort-section.visible {
+  display: block;
+}
+
+.amort-section h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.summary-item {
+  background: #f0f4ff;
+  border-radius: 8px;
+  padding: 10px 12px;
+  text-align: center;
+}
+
+.summary-item .s-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.summary-item .s-value {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--primary);
+  direction: ltr;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+  min-width: 380px;
+}
+
+thead th {
+  background: var(--primary);
+  color: white;
+  padding: 9px 8px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  font-weight: 600;
+}
+
+tbody tr:nth-child(even) {
+  background: #f8f9ff;
+}
+
+tbody td {
+  padding: 7px 8px;
+  text-align: center;
+  border-bottom: 1px solid #f0f0f0;
+  direction: ltr;
+}
+
+/* ─── Error ─── */
+.error-msg {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  color: var(--danger);
+  font-size: 0.85rem;
+  display: none;
+}
+
+.error-msg.visible {
+  display: block;
+}
+
+/* ─── Animations ─── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Mobile tweaks ─── */
+@media (max-width: 400px) {
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+  .result-box .result-value {
+    font-size: 1.5rem;
+  }
+}

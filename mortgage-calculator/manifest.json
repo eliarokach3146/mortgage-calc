@@ -1,0 +1,26 @@
+{
+  "name": "מחשבון יועץ משכנתאות",
+  "short_name": "מחשבון",
+  "description": "מחשבון אחוזים והחזר הלוואה ליועץ משכנתאות",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1a237e",
+  "theme_color": "#1a237e",
+  "lang": "he",
+  "dir": "rtl",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
